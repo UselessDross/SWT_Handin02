@@ -7,6 +7,16 @@ namespace Calculator.Test.Unit
         {
         }
 
+        [Test]
+        public void Clear_AccumulatorCorrect()
+        {
+            Calculator uut = new Calculator();
+
+            uut.Add(1, 1);
+            uut.Clear();
+
+            Assert.That(uut.Accumulator, Is.EqualTo(0));
+        }
 
         [Test]
         public void Add_ResultCorrect()
@@ -19,10 +29,12 @@ namespace Calculator.Test.Unit
         public void Add_AccumulatorCorrect()
         {
             Calculator uut = new Calculator();
-            uut.Add(9, 5);
+            uut.Add(5, 5);
+            uut.Add(4);
 
             Assert.That(uut.Accumulator, Is.EqualTo(14));
         }
+
 
 
         [Test]
@@ -36,10 +48,12 @@ namespace Calculator.Test.Unit
         public void Subtract_AccumulatorCorrect()
         {
             Calculator uut = new Calculator();
-            uut.Subtract(9, 5);
+            uut.Subtract(9, 2);
+            uut.Subtract(3);
 
             Assert.That(uut.Accumulator, Is.EqualTo(4));
         }
+
 
 
         [Test]
@@ -53,7 +67,8 @@ namespace Calculator.Test.Unit
         public void Multiply_AccumulatorCorrect()
         {
             Calculator uut = new Calculator();
-            uut.Multiply(9, 5);
+            uut.Multiply(3, 3);
+            uut.Multiply(5);
 
             Assert.That(uut.Accumulator, Is.EqualTo(45));
         }
@@ -70,9 +85,10 @@ namespace Calculator.Test.Unit
         public void Power_AccumulatorCorrect()
         {
             Calculator uut = new Calculator();
-            uut.Power(9, 5);
+            uut.Power(2, 4);
+            uut.Power(3);
 
-            Assert.That(uut.Accumulator, Is.EqualTo(59049));
+            Assert.That(uut.Accumulator, Is.EqualTo(4096));
         }
     }
 }
