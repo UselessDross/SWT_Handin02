@@ -21,7 +21,7 @@ namespace Calculator.Test.Unit
         [Test]
         public void Add_ResultCorrect()
         {
-           Calculator uut = new Calculator();
+            Calculator uut = new Calculator();
 
             Assert.That(uut.Add(9, 5), Is.EqualTo(14));
         }
@@ -29,13 +29,19 @@ namespace Calculator.Test.Unit
         public void Add_AccumulatorCorrect()
         {
             Calculator uut = new Calculator();
+            uut.Add(9, 5);
+
+            Assert.That(uut.Accumulator, Is.EqualTo(14));
+        }
+        [Test]
+        public void AddWithAccumulator_ResultCorrect()
+        {
+            Calculator uut = new Calculator();
             uut.Add(5, 5);
             uut.Add(4);
 
             Assert.That(uut.Accumulator, Is.EqualTo(14));
         }
-
-
 
         [Test]
         public void Subtract_ResultCorrect()
@@ -48,13 +54,19 @@ namespace Calculator.Test.Unit
         public void Subtract_AccumulatorCorrect()
         {
             Calculator uut = new Calculator();
+            uut.Subtract(9, 5);
+
+            Assert.That(uut.Accumulator, Is.EqualTo(4));
+        }
+        [Test]
+        public void SubtractWithAccumulator_ResultCorrect()
+        {
+            Calculator uut = new Calculator();
             uut.Subtract(9, 2);
             uut.Subtract(3);
 
             Assert.That(uut.Accumulator, Is.EqualTo(4));
         }
-
-
 
         [Test]
         public void Multiply_ResultCorrect()
@@ -67,12 +79,19 @@ namespace Calculator.Test.Unit
         public void Multiply_AccumulatorCorrect()
         {
             Calculator uut = new Calculator();
+            uut.Multiply(9, 5);
+
+            Assert.That(uut.Accumulator, Is.EqualTo(45));
+        }
+        [Test]
+        public void MultiplyWithAccumulator_ResultCorrect()
+        {
+            Calculator uut = new Calculator();
             uut.Multiply(3, 3);
             uut.Multiply(5);
 
             Assert.That(uut.Accumulator, Is.EqualTo(45));
         }
-
 
         [Test]
         public void Power_ResultCorrect()
@@ -83,6 +102,14 @@ namespace Calculator.Test.Unit
         }
         [Test]
         public void Power_AccumulatorCorrect()
+        {
+            Calculator uut = new Calculator();
+            uut.Power(9, 5);
+
+            Assert.That(uut.Accumulator, Is.EqualTo(59049));
+        }
+        [Test]
+        public void PowerWithAccumulator_ResultCorrect()
         {
             Calculator uut = new Calculator();
             uut.Power(2, 4);
