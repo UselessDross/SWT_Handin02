@@ -32,11 +32,11 @@ namespace Calculator.Test.Unit
             Assert.That(uut.Accumulator, Is.EqualTo(14));
         }
         [Test]
-        public void AddWithAccumulator_ResultCorrect()
+        public void AddWithAccumulator()
         {
             uut.Add(5, 5);
-            uut.Add(4);
 
+            Assert.That(uut.Add(4), Is.EqualTo(14));
             Assert.That(uut.Accumulator, Is.EqualTo(14));
         }
 
@@ -53,11 +53,11 @@ namespace Calculator.Test.Unit
             Assert.That(uut.Accumulator, Is.EqualTo(4));
         }
         [Test]
-        public void SubtractWithAccumulator_ResultCorrect()
+        public void SubtractWithAccumulator()
         {
             uut.Subtract(9, 2);
-            uut.Subtract(3);
 
+            Assert.That(uut.Subtract(3), Is.EqualTo(4));
             Assert.That(uut.Accumulator, Is.EqualTo(4));
         }
 
@@ -74,11 +74,11 @@ namespace Calculator.Test.Unit
             Assert.That(uut.Accumulator, Is.EqualTo(45));
         }
         [Test]
-        public void MultiplyWithAccumulator_ResultCorrect()
+        public void MultiplyWithAccumulator()
         {
             uut.Multiply(3, 3);
-            uut.Multiply(5);
 
+            Assert.That(uut.Multiply(5), Is.EqualTo(45));
             Assert.That(uut.Accumulator, Is.EqualTo(45));
         }
 
@@ -95,11 +95,11 @@ namespace Calculator.Test.Unit
             Assert.That(uut.Accumulator, Is.EqualTo(59049));
         }
         [Test]
-        public void PowerWithAccumulator_ResultCorrect()
+        public void PowerWithAccumulator()
         {
             uut.Power(2, 4);
-            uut.Power(3);
 
+            Assert.That(uut.Power(3), Is.EqualTo(4096));
             Assert.That(uut.Accumulator, Is.EqualTo(4096));
         }
     }
