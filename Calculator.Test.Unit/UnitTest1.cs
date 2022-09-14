@@ -13,6 +13,12 @@ namespace Calculator.Test.Unit
         }
 
         [Test]
+        public void Accumalator_InitialValue()
+        {
+            Assert.That(uut.Accumulator, Is.EqualTo(0));
+        }
+
+        [Test]
         public void Clear_AccumulatorCorrect()
         {
             uut.Add(1, 1);
