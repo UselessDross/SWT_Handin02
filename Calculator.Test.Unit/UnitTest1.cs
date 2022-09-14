@@ -4,6 +4,8 @@ namespace Calculator.Test.Unit
     {
         Calculator uut;
 
+        private const double _precision = 1e-4;
+
         [SetUp]
         public void Setup()
         {
@@ -82,25 +84,33 @@ namespace Calculator.Test.Unit
             Assert.That(uut.Accumulator, Is.EqualTo(45));
         }
 
-        [Test]
-        public void Power_ResultCorrect()
+        [TestCase(9, 5, 59049)]
+        [TestCase(2, -2, 0.25)]
+        [TestCase(2, 0, 1)]
+        [TestCase(10.3f, 2, 106.09)]
+        public void Power_ResultCorrect(double a, double b, double result)
         {
-            Assert.That(uut.Power(9, 5), Is.EqualTo(59049));
+            Assert.That(uut.Power(a, b), Is.EqualTo(result).Within(_precision));
         }
-        [Test]
-        public void Power_AccumulatorCorrect()
+        [TestCase(9, 5, 59049)]
+        [TestCase(2, -2, 0.25)]
+        [TestCase(2, 0, 1)]
+        [TestCase(10.3f, 2, 106.09)]
+        public void Power_AccumulatorCorrect(double a, double b, double result)
         {
-            uut.Power(9, 5);
+            uut.Power(a, b);
 
-            Assert.That(uut.Accumulator, Is.EqualTo(59049));
+            Assert.That(uut.Accumulator, Is.EqualTo(result).Within(_precision));
         }
-        [Test]
-        public void PowerWithAccumulator()
+        [TestCase(2, 4, 3, 4096)]
+        [TestCase(2, -2, 2, 0.0625)]
+        [TestCase(1e+1, 2, 3, 1e+6)]
+        public void PowerWithAccumulator(double a, double b, double c, double result)
         {
-            uut.Power(2, 4);
+            uut.Power(a, b);
 
-            Assert.That(uut.Power(3), Is.EqualTo(4096));
-            Assert.That(uut.Accumulator, Is.EqualTo(4096));
+            Assert.That(uut.Power(c), Is.EqualTo(result).Within(_precision));
+            Assert.That(uut.Accumulator, Is.EqualTo(result).Within(_precision));
         }
     }
 }
