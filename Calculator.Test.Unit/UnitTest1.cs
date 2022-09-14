@@ -43,9 +43,6 @@ namespace Calculator.Test.Unit
             Assert.That(uut.Accumulator, Is.EqualTo(0));
         }
 
-        [Test]
-        public void Add_ResultCorrect()
-
         [TestCase(1, 2, 3)]
         [TestCase(3, 3, 6)]
         [TestCase(9, 1, 10)]
