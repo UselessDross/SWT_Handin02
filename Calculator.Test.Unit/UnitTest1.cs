@@ -20,6 +20,22 @@ namespace Calculator.Test.Unit
 
             Assert.That(uut.Accumulator, Is.EqualTo(0));
         }
+        [Test]
+        public void ClearTwice_AccumulatorCorrect()
+        {
+            uut.Add(1, 1);
+            uut.Clear();
+            uut.Clear();
+
+            Assert.That(uut.Accumulator, Is.EqualTo(0));
+        }
+        [Test]
+        public void ClearFirst_AccumulatorCorrect()
+        {
+            uut.Clear();
+
+            Assert.That(uut.Accumulator, Is.EqualTo(0));
+        }
 
         [Test]
         public void Add_ResultCorrect()
