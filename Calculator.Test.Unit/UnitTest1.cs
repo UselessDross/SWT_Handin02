@@ -63,25 +63,31 @@ namespace Calculator.Test.Unit
             Assert.That(uut.Accumulator, Is.EqualTo(4));
         }
 
-        [Test]
-        public void Multiply_ResultCorrect()
+        [TestCase(9, 5.5f, 49.5)]
+        [TestCase(9, 0, 0)]
+        [TestCase(6, -3, -18)]
+        public void Multiply_ResultCorrect(double a, double b, double result)
         {
-            Assert.That(uut.Multiply(9, 5), Is.EqualTo(45));
+            Assert.That(uut.Multiply(a, b), Is.EqualTo(result).Within(_precision));
         }
-        [Test]
-        public void Multiply_AccumulatorCorrect()
+        [TestCase(9, 5.5f, 49.5)]
+        [TestCase(9, 0, 0)]
+        [TestCase(6, -3, -18)]
+        public void Multiply_AccumulatorCorrect(double a, double b, double result)
         {
-            uut.Multiply(9, 5);
+            uut.Multiply(a, b);
 
-            Assert.That(uut.Accumulator, Is.EqualTo(45));
+            Assert.That(uut.Accumulator, Is.EqualTo(result).Within(_precision));
         }
-        [Test]
-        public void MultiplyWithAccumulator()
+        [TestCase(9, 5.5f, 2, 99)]
+        [TestCase(9, 0, 2, 0)]
+        [TestCase(6, -3, 4, -72)]
+        public void MultiplyWithAccumulator(double a, double b, double c, double result)
         {
-            uut.Multiply(3, 3);
+            uut.Multiply(a, b);
 
-            Assert.That(uut.Multiply(5), Is.EqualTo(45));
-            Assert.That(uut.Accumulator, Is.EqualTo(45));
+            Assert.That(uut.Multiply(c), Is.EqualTo(result).Within(_precision));
+            Assert.That(uut.Accumulator, Is.EqualTo(result).Within(_precision));
         }
 
         [TestCase(9, 5, 59049)]
