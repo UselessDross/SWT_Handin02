@@ -10,55 +10,73 @@ namespace Calculator.Test.Unit
             uut = new Calculator();
         }
 
-        [Test]
-        public void Clear_AccumulatorCorrect()
+        
+        [TestCase(1, 2,  0)]
+        [TestCase(3, 3, 0)]
+        [TestCase(22, 22, 0)]
+
+        public void Clear_AccumulatorCorrect(double a,double b,double  result)
         {
-            uut.Add(1, 1);
+            uut.Add(a, b);
             uut.Clear();
-
-            Assert.That(uut.Accumulator, Is.EqualTo(0));
+            Assert.That(uut.Accumulator, Is.EqualTo(result));
         }
 
-        [Test]
-        public void Add_ResultCorrect()
-        {
-            Assert.That(uut.Add(9, 5), Is.EqualTo(14));
-        }
-        [Test]
-        public void Add_AccumulatorCorrect()
-        {
-            uut.Add(9, 5);
 
-            Assert.That(uut.Accumulator, Is.EqualTo(14));
-        }
-        [Test]
-        public void AddWithAccumulator()
+        [TestCase(1, 2, 3)]
+        [TestCase(3, 3, 6)]
+        [TestCase(9, 1, 10)]
+        public void Add_ResultCorrect(double a, double b, double result)
         {
-            uut.Add(5, 5);
-
-            Assert.That(uut.Add(4), Is.EqualTo(14));
-            Assert.That(uut.Accumulator, Is.EqualTo(14));
+            Assert.That(uut.Add(a, b), Is.EqualTo(result));
         }
 
-        [Test]
-        public void Subtract_ResultCorrect()
+        [TestCase(1, 2, 3)]
+        [TestCase(3, 3, 6)]
+        [TestCase(9, 1, 10)]
+        public void Add_AccumulatorCorrect(double a, double b, double result)
         {
-            Assert.That(uut.Subtract(9, 5), Is.EqualTo(4));
-        }
-        [Test]
-        public void Subtract_AccumulatorCorrect()
-        {
-            uut.Subtract(9, 5);
+            uut.Add(b,a);
 
-            Assert.That(uut.Accumulator, Is.EqualTo(4));
+            Assert.That(uut.Accumulator, Is.EqualTo(result));
         }
-        [Test]
-        public void SubtractWithAccumulator()
-        {
-            uut.Subtract(9, 2);
 
-            Assert.That(uut.Subtract(3), Is.EqualTo(4));
-            Assert.That(uut.Accumulator, Is.EqualTo(4));
+        [TestCase(1, 1, 1, 3)]
+        [TestCase(1, 1, 2, 4)]
+        [TestCase(1, 1, 3, 5)]
+        public void AddWithAccumulator(double a, double b, double c,double result)
+        {
+            uut.Add(a, b);
+
+            Assert.That(uut.Add(c), Is.EqualTo(result));
+            Assert.That(uut.Accumulator, Is.EqualTo(result));
+        }
+
+        [TestCase(9, 6, 3)]
+        [TestCase(10, 3, 7)]
+        [TestCase(9, 1, 8)]
+        public void Subtract_ResultCorrect(double a, double b, double result)
+        {
+            Assert.That(uut.Subtract(a, b), Is.EqualTo(result));
+        }
+        [TestCase(9, 6, 3)]
+        [TestCase(10, 3, 7)]
+        [TestCase(9, 1, 8)]
+        public void Subtract_AccumulatorCorrect(double a, double b, double result)
+        {
+            uut.Subtract(a, b);
+
+            Assert.That(uut.Accumulator, Is.EqualTo(result));
+        }
+        [TestCase(8, 1, 1, 6)]
+        [TestCase(10, 1, 2, 7)]
+        [TestCase(3, 1, 2, 0)]
+        public void SubtractWithAccumulator(double a, double b, double c, double result)
+        {
+            uut.Subtract(a, b);
+
+            Assert.That(uut.Subtract(c), Is.EqualTo(result));
+            Assert.That(uut.Accumulator, Is.EqualTo(result));
         }
 
         [Test]
